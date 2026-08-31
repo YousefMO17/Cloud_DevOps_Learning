@@ -1,0 +1,55 @@
+touch file1.txt
+
+mkdir data
+
+echo "Linux Admin" > file1.txt
+
+cat file1.txt
+
+ls -l file1.txt
+
+stat file1.txt
+
+ls -li file1.txt
+
+cp file1.txt file2.txt
+
+ls -li file1.txt file2.txt
+
+mv file2.txt backup.txt
+
+mv backup.txt data/
+
+ls -l
+ls -l data/
+
+cp file1.txt copy.txt
+
+ls -li file1.txt copy.txt
+
+ln file1.txt hardlink.txt
+
+ls -li file1.txt hardlink.txt
+
+echo "Git Practice" >> hardlink.txt
+
+cat file1.txt
+cat hardlink.txt
+
+ln -s file1.txt softlink.txt
+
+ls -li
+
+cat softlink.txt
+
+rm file1.txt
+
+cat hardlink.txt
+
+cat softlink.txt
+
+rm copy.txt
+
+rm -r data
+
+ls -li

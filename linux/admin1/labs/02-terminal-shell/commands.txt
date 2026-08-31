@@ -1,0 +1,24 @@
+git status
+git switch main
+git pull
+git switch -c 02-terminal-shell
+git branch --show-current
+echo $SHELL
+ps -p $$ -o comm=
+ls
+ls -l
+ls -a
+ls -la
+ls -l /etc
+pwd
+touch test.txt
+touch Test.txt
+touch TEST.txt
+rm test.txt Test.txt TEST.txt
+bash
+exit
+mkdir terminal-practice
+cd terminal-practice
+cd ..
+history
+history | tail -n 10

@@ -1,0 +1,17 @@
+Current Git Branch:
+02-terminal-shell
+
+Login Shell:
+...
+
+Current Shell:
+...
+
+Working Directory:
+...
+
+Case Sensitivity Test:
+Linux treated test.txt, Test.txt and TEST.txt as different files.
+
+Hidden Git Directory:
+.git

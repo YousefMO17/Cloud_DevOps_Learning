@@ -1,0 +1,31 @@
+ls --help
+
+man ls
+
+whatis ls
+
+apropos directory
+
+mkdir --help
+
+mkdir -p test/a/b/c
+
+cp --help
+
+cp -r test test-backup
+
+man mkdir
+
+man cp
+
+man passwd
+
+man 5 passwd
+
+git status -h
+
+git help status
+
+git log -h
+
+git help log

@@ -1,0 +1,110 @@
+Lab: Getting Help in Linux
+
+Command Help:
+
+Command:
+ls --help
+
+Result:
+Displayed available options for the ls command.
+
+Hidden Files Option:
+
+Discovered Option:
+-a
+
+Example:
+ls -a
+
+Meaning:
+Display all files including hidden files.
+
+mkdir Parent Directory Option:
+
+Discovered Option:
+-p
+
+Example:
+mkdir -p test/a/b/c
+
+Meaning:
+Create parent directories when necessary.
+
+Recursive Copy Option:
+
+Discovered Option:
+-r
+
+Example:
+cp -r test test-backup
+
+Meaning:
+Copy directories recursively.
+
+whatis Test:
+
+Command:
+whatis ls
+
+Result:
+Displayed a short description of the ls command.
+
+apropos Test:
+
+Command:
+apropos directory
+
+Result:
+Displayed commands and manual entries related to directories.
+
+Manual Page Search:
+
+Command:
+man ls
+
+Useful Keys:
+
+Space = Move forward
+b = Move backward
+/word = Search
+n = Next result
+q = Quit
+
+Manual Sections:
+
+Command:
+man passwd
+
+Purpose:
+Documentation for the passwd command.
+
+Command:
+man 5 passwd
+
+Purpose:
+Documentation for the /etc/passwd file format.
+
+Git Help:
+
+Command:
+git status -h
+
+Result:
+Displayed short help for git status.
+
+Command:
+git help status
+
+Result:
+Displayed detailed Git documentation.
+
+Command:
+git log -h
+
+Result:
+Displayed available git log options.
+
+Lab Result:
+
+Successfully used Linux and Git built-in documentation
+instead of relying on external searches.

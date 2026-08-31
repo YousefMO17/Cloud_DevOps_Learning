@@ -1,0 +1,120 @@
+Lab: Files, Directories, Inodes and Links
+
+Original File:
+
+file1.txt
+
+Content:
+
+Linux Admin
+
+File Properties:
+
+Command:
+ls -l file1.txt
+
+Observed Information:
+
+File type
+Permissions
+Link count
+Owner
+Group
+File size
+Modification time
+File name
+
+Detailed Metadata:
+
+Command:
+stat file1.txt
+
+Observed Information:
+
+Size
+Blocks
+Inode number
+Links
+Permissions
+Access time
+Modification time
+Change time
+
+Copy Test:
+
+Original:
+file1.txt
+
+Copy:
+copy.txt
+
+Command:
+ls -li file1.txt copy.txt
+
+Result:
+The original file and copied file had different inode numbers.
+
+Conclusion:
+cp creates a separate file with a separate inode.
+
+Hard Link Test:
+
+Command:
+ln file1.txt hardlink.txt
+
+Result:
+file1.txt and hardlink.txt had the same inode number.
+
+Conclusion:
+A hard link references the same inode and file data.
+
+Hard Link Modification Test:
+
+Command:
+echo "Git Practice" >> hardlink.txt
+
+Content of file1.txt became:
+
+Linux Admin
+Git Practice
+
+Conclusion:
+Editing the hard link changed the same underlying file data.
+
+Symbolic Link Test:
+
+Command:
+ln -s file1.txt softlink.txt
+
+Result:
+softlink.txt had a different inode and referenced file1.txt.
+
+After Deleting file1.txt:
+
+Command:
+cat hardlink.txt
+
+Result:
+The hard link continued to work.
+
+Command:
+cat softlink.txt
+
+Result:
+The symbolic link failed because its target path no longer existed.
+
+Final Conclusion:
+
+Hard Link:
+Same inode
+References the same data
+Survives deletion of another hard-link filename
+
+Symbolic Link:
+Different inode
+References a path
+Can become broken if its target is deleted
+
+Lab Result:
+Successfully practiced creating, copying, moving,
+removing, inspecting, and linking Linux files.

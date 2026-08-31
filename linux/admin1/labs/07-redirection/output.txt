@@ -1,0 +1,130 @@
+Lab: Standard Input, Output and Redirection
+
+Standard Streams:
+
+0 = stdin
+1 = stdout
+2 = stderr
+
+Standard Output Test:
+
+Command:
+echo "Linux"
+
+Output:
+
+Linux
+
+Overwrite Redirection Test:
+
+Command:
+echo "Linux" > report.txt
+
+report.txt:
+
+Linux
+
+Command:
+echo "Git" > report.txt
+
+report.txt:
+
+Git
+
+Conclusion:
+
+overwrites existing file contents.
+
+Append Test:
+
+Commands:
+
+echo "Linux" > report.txt
+echo "Git" >> report.txt
+echo "GitHub" >> report.txt
+
+Final report.txt:
+
+Linux
+Git
+GitHub
+
+Conclusion:
+
+appends data without deleting existing contents.
+
+stdout Redirection:
+
+Command:
+ls /etc > etc-files.txt
+
+Result:
+The normal output of ls was stored in etc-files.txt.
+
+stderr Test:
+
+Command:
+ls /fake-directory
+
+Result:
+An error message was displayed because the directory does not exist.
+
+stderr Redirection:
+
+Command:
+ls /fake-directory 2> errors.txt
+
+Result:
+The error was stored inside errors.txt instead of being displayed
+as normal command output.
+
+Separate stdout and stderr:
+
+Command:
+
+ls /etc /fake-directory > good-output.txt 2> error-output.txt
+
+Result:
+
+Normal output:
+good-output.txt
+
+Error output:
+error-output.txt
+
+Git Status Redirection:
+
+Command:
+git status > git-status.txt
+
+Result:
+Git status output was successfully saved to a text file.
+
+Git History Redirection:
+
+Command:
+git log --oneline > git-history.txt
+
+Result:
+Git commit history was saved to git-history.txt.
+
+Input Redirection:
+
+Command:
+wc -l < report.txt
+
+Result:
+3
+
+Redirection Summary:
+
+ stdout to file and overwrite
+stdout to file and append
+
+2> stderr to file
+< file used as stdin
+
+Lab Result:
+
+Successfully redirected Linux and Git command input,
+standard output, and standard error.

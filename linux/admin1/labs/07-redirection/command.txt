@@ -1,0 +1,41 @@
+echo "Linux"
+
+echo "Linux" > report.txt
+
+cat report.txt
+
+echo "Git" > report.txt
+
+cat report.txt
+
+echo "Linux" > report.txt
+echo "Git" >> report.txt
+echo "GitHub" >> report.txt
+
+cat report.txt
+
+ls /etc > etc-files.txt
+
+head etc-files.txt
+
+ls /fake-directory
+
+ls /fake-directory 2> errors.txt
+
+cat errors.txt
+
+ls /etc /fake-directory > good-output.txt 2> error-output.txt
+
+head good-output.txt
+
+cat error-output.txt
+
+git status > git-status.txt
+
+cat git-status.txt
+
+git log --oneline > git-history.txt
+
+head git-history.txt
+
+wc -l < report.txt

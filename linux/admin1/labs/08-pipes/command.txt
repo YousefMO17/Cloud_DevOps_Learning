@@ -1,0 +1,31 @@
+cat > server.log
+
+cat server.log
+
+grep ERROR server.log
+
+grep ERROR server.log | wc -l
+
+grep INFO server.log | wc -l
+
+grep WARNING server.log | wc -l
+
+grep ERROR server.log > errors.txt
+
+cat errors.txt
+
+grep ERROR server.log | wc -l > error-count.txt
+
+cat error-count.txt
+
+git log --oneline
+
+git log --oneline | head -n 5
+
+git log --oneline | grep -i linux
+
+history | grep git
+
+history | grep git | wc -l
+
+ls -la | grep .git

@@ -1,0 +1,145 @@
+Lab: Linux Pipes
+
+Test Log File:
+
+server.log
+
+Log Content:
+
+INFO server started
+ERROR database timeout
+INFO request completed
+ERROR authentication failed
+WARNING memory high
+ERROR disk space low
+INFO backup completed
+
+ERROR Messages:
+
+Command:
+grep ERROR server.log
+
+Result:
+
+ERROR database timeout
+ERROR authentication failed
+ERROR disk space low
+
+ERROR Count:
+
+Command:
+grep ERROR server.log | wc -l
+
+Result:
+3
+
+INFO Count:
+
+Command:
+grep INFO server.log | wc -l
+
+Result:
+3
+
+WARNING Count:
+
+Command:
+grep WARNING server.log | wc -l
+
+Result:
+1
+
+Pipeline Concept:
+
+Command:
+
+grep ERROR server.log | wc -l
+
+Flow:
+
+server.log
+|
+v
+grep ERROR
+|
+v
+wc -l
+
+Result:
+3
+
+Pipe with Redirection:
+
+Command:
+
+grep ERROR server.log | wc -l > error-count.txt
+
+error-count.txt:
+
+3
+
+Git Log Pipeline:
+
+Command:
+git log --oneline | head -n 5
+
+Result:
+Displayed up to five lines from the Git commit history.
+
+Actual hashes and commit messages depend on the repository.
+
+Git Commit Search:
+
+Command:
+git log --oneline | grep -i linux
+
+Result:
+Displayed commits containing the word "linux" if matching
+commit messages existed.
+
+Git Commands from Shell History:
+
+Command:
+history | grep git
+
+Result:
+Displayed shell-history entries containing the word git.
+
+Count Git Commands:
+
+Command:
+history | grep git | wc -l
+
+Result:
+The exact number depends on the current shell history.
+
+Hidden Git Files:
+
+Command:
+ls -la | grep .git
+
+Possible Result:
+
+.git
+.gitignore
+
+Pipe vs Redirection:
+
+Pipe:
+
+command1 | command2
+
+Meaning:
+Send stdout from command1 to stdin of command2.
+
+Redirection:
+
+command > file.txt
+
+Meaning:
+Send stdout from a command to a file.
+
+Lab Result:
+
+Successfully created Linux pipelines and combined
+text-processing commands, Git commands, and redirection.

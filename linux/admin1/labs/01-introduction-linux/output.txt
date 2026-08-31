@@ -1,0 +1,20 @@
+Linux Distribution:
+Ubuntu 24.04 LTS
+
+Kernel:
+6.x.x
+
+Username:
+your-user
+
+Hostname:
+your-hostname
+
+Working Directory:
+/home/user/linux-admin-1-labs/labs/01-introduction-linux
+
+Git Version:
+git version x.x.x
+
+Current Git Branch:
+lab/01-introduction-linux

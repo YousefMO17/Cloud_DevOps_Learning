@@ -1,0 +1,10 @@
+sw_vers
+uname
+uname -r
+uname -a
+whoami
+hostname
+pwd
+git --version
+git status
+git branch --show-current

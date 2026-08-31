@@ -1,0 +1,114 @@
+Lab: Working with Text Files
+
+Test Log File:
+
+application.log
+
+Log Content:
+
+INFO Server started
+INFO Database connected
+WARNING CPU usage high
+ERROR Database timeout
+INFO User login
+ERROR Authentication failed
+INFO User logout
+ERROR Disk space low
+WARNING Memory usage high
+INFO Backup completed
+
+Total Number of Lines:
+
+Command:
+wc -l application.log
+
+Result:
+10
+
+First Three Lines:
+
+Command:
+head -n 3 application.log
+
+Result:
+
+INFO Server started
+INFO Database connected
+WARNING CPU usage high
+
+Last Three Lines:
+
+Command:
+tail -n 3 application.log
+
+Result:
+
+ERROR Disk space low
+WARNING Memory usage high
+INFO Backup completed
+
+ERROR Search:
+
+Command:
+grep ERROR application.log
+
+Result:
+
+ERROR Database timeout
+ERROR Authentication failed
+ERROR Disk space low
+
+ERROR Search with Line Numbers:
+
+Command:
+grep -n ERROR application.log
+
+Result:
+
+4 Database timeout
+6 Authentication failed
+8 Disk space low
+
+WARNING Search:
+
+Command:
+grep WARNING application.log
+
+Result:
+
+WARNING CPU usage high
+WARNING Memory usage high
+
+INFO Messages:
+
+Command:
+grep INFO application.log
+
+Result:
+
+INFO Server started
+INFO Database connected
+INFO User login
+INFO User logout
+INFO Backup completed
+
+Git Text Processing:
+
+Command:
+git log --oneline
+
+Result:
+Displayed the repository commit history in a compact format.
+
+Command:
+git log --oneline | head -n 3
+
+Result:
+Displayed the first three lines from the Git log output.
+
+Actual commit hashes and messages depend on the repository history.
+
+Lab Result:
+
+Successfully practiced displaying, searching,
+counting, and analyzing Linux text files and command output.

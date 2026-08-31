@@ -1,0 +1,31 @@
+cat > application.log
+
+cat application.log
+
+less application.log
+
+head application.log
+
+head -n 3 application.log
+
+tail application.log
+
+tail -n 3 application.log
+
+wc application.log
+
+wc -l application.log
+
+grep ERROR application.log
+
+grep -n ERROR application.log
+
+grep -i error application.log
+
+grep WARNING application.log
+
+grep INFO application.log
+
+git log --oneline
+
+git log --oneline | head -n 3

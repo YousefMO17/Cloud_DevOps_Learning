@@ -1,0 +1,51 @@
+pwd
+ls /
+ls /home
+ls /etc
+ls /var
+ls /var/log
+ls /tmp
+
+cd /
+pwd
+
+cd /home
+pwd
+
+cd /etc
+pwd
+
+cd /var
+pwd
+
+cd /var/log
+pwd
+
+cd /tmp
+pwd
+
+cd ~
+
+cd /etc
+cd /var
+cd -
+
+mkdir -p workspace/projects/webapp/config
+mkdir -p workspace/projects/webapp/logs
+mkdir -p workspace/backups
+
+cd workspace/projects/webapp/config
+pwd
+
+cd ../logs
+pwd
+
+cd ../../../backups
+pwd
+
+ls .
+cd ..
+pwd
+
+git rev-parse --show-toplevel
+ls -la

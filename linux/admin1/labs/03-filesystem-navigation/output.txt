@@ -1,0 +1,81 @@
+Lab: Linux File System and Navigation
+
+Root Directory:
+/
+
+Important Directories Visited:
+
+/home
+/etc
+/var
+/var/log
+/tmp
+
+Absolute Path Example:
+/etc
+
+Relative Path Example:
+../logs
+
+Parent Directory:
+..
+
+Current Directory:
+.
+
+Home Directory Shortcut:
+~
+
+Previous Directory Command:
+cd -
+
+Navigation Workspace Structure:
+
+workspace/
+├── backups/
+└── projects/
+└── webapp/
+├── config/
+└── logs/
+
+Navigation Test:
+
+From:
+workspace/projects/webapp/config
+
+Command:
+cd ../logs
+
+Result:
+workspace/projects/webapp/logs
+
+Navigation Challenge:
+
+From:
+workspace/projects/webapp/logs
+
+Command:
+cd ../../../backups
+
+Result:
+workspace/backups
+
+Git Repository Root:
+
+Command:
+git rev-parse --show-toplevel
+
+Result:
+Path to the linux-admin-1 repository on the local machine.
+
+Hidden Git Directory:
+
+Command:
+ls -la
+
+Result:
+.git directory was visible because the -a option displays hidden files.
+
+Lab Result:
+Successfully practiced Linux filesystem navigation using
+absolute paths, relative paths, and special path symbols.

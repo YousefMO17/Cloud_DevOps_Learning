@@ -1,0 +1,142 @@
+# Linux Lab 002 — Filesystem Navigation
+
+**Phase:** 1 — Linux Foundations  
+**Topic:** Linux Navigation, Absolute & Relative Paths
+
+## 1. Linux Filesystem
+
+Linux Filesystem عبارة عن شجرة بتبدأ من الـ Root Directory `/`.
+
+| Directory | Purpose |
+|---|---|
+| `/` | Root Directory — بداية الـ Filesystem |
+| `/home` | مكان الـ Home Directories للمستخدمين |
+| `/home/devops` | Home Directory بتاع المستخدم `devops` |
+| `/etc` | System Configuration Files |
+| `/var/log` | System & Application Logs |
+| `/tmp` | Temporary Files |
+
+## 2. Essential Commands
+
+| Command | Description |
+|---|---|
+| `pwd` | Print Working Directory — مكانك الحالي |
+| `ls` | List files and directories |
+| `ls -l` | Detailed listing |
+| `ls -a` | Show hidden files |
+| `ls -la` | Detailed listing including hidden files |
+| `cd /etc` | Navigate to `/etc` |
+| `cd ..` | Go to Parent Directory |
+| `cd ~` | Go to Current User's Home Directory |
+| `cd` | Also goes to Home Directory |
+| `cd /` | Go to Root Directory |
+| `cd -` | Return to Previous Working Directory |
+
+**Important:** `cd /` و`cd -` مش نفس الحاجة.
+
+## 3. Absolute vs Relative Paths
+
+### Absolute Path
+
+- بيبدأ بـ `/`.
+- بيحدد المسار كامل من الـ Root.
+- مش بيعتمد على مكانك الحالي.
+
+Example: `cd /var/log`
+
+### Relative Path
+
+- بيتحدد بالنسبة للـ Current Working Directory.
+- مش بيبدأ بـ `/`.
+
+Example: لو إنت واقف في `/var`، تقدر تكتب `cd log` عشان توصل لـ `/var/log`.
+
+## 4. Parent Navigation
+
+الرمز `..` معناه Parent Directory.
+
+لو إنت في `/home/devops`:
+
+- `cd ..` → `/home`
+- `cd ../..` → `/`
+- `cd ../../var/log` → `/var/log`
+
+**Key Idea:** ممكن نجمع أكتر من Navigation Step في أمر واحد.
+
+## 5. Practical Examples
+
+**Scenario A:**
+
+Current Location: `/home/devops`
+
+Command: `cd /etc`
+
+Result: `/etc`
+
+**Scenario B:**
+
+Current Location: `/etc`
+
+Command: `cd ..`
+
+Result: `/`
+
+**Scenario C:**
+
+Current Location: `/home/devops`
+
+Command: `cd ../../var/log`
+
+Result: `/var/log`
+
+**Scenario D:**
+
+Current Location: `/home/devops`
+
+Command: `cd -`
+
+Result: يرجع للمجلد السابق، أيًا كان مكانه.
+
+## 6. Mistakes & Troubleshooting
+
+**Mistake 1: `cd var`**
+
+لو إنت في `/home/devops`، الأمر بيدور على `/home/devops/var`، مش `/var`.
+
+Correct Command: `cd /var`
+
+**Mistake 2: `ls /log`**
+
+الأمر بيدور على `/log` مباشرة تحت الـ Root.
+
+لو إنت موجود في `/var`، استخدم `ls log` لعرض محتويات `/var/log`.
+
+**Important:** `ls` بيعرض المحتويات، لكن مش بيغيّر مكانك. `cd` هو اللي بيغيّر الـ Working Directory.
+
+## 7. Production & DevOps Notes
+
+- استخدم `pwd` للتأكد من موقعك قبل أي عملية حساسة.
+- الـ Absolute Paths مفيدة في Scripts لأنها مش بتعتمد على الـ Current Working Directory.
+- الـ Relative Paths مناسبة لما تكون عارف موقعك الحالي.
+- استخدم `ls -la` لو محتاج تشوف الملفات المخفية.
+- أثناء Troubleshooting، تحديد مسار ملفات الـ Logs والـ Configuration مهارة أساسية.
+
+## 8. Notes to Remember
+
+- `/` = Root Directory
+- `~` = Home Directory
+- `..` = Parent Directory
+- `-` مع `cd` = Previous Working Directory
+- `pwd` = Where am I?
+- `ls` = What's here?
+- `cd` = Move to another directory
+
+## 9. Interview Question
+
+**Q: What is the difference between Absolute and Relative Paths in Linux?**
+
+**Answer:**
+
+An Absolute Path starts from the Root Directory `/` and does not depend on the current location. A Relative Path is resolved based on the Current Working Directory.
+
+**Lab Status:** Closed — navigation practiced; single-command relative path explained, final execution not independently verified.

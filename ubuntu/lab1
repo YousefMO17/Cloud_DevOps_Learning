@@ -1,0 +1,18 @@
+Linux Lab 001 — Server Investigation
+
+whoami       -> Current user
+hostname     -> Server hostname
+hostnamectl  -> Host and OS information
+pwd          -> Current directory
+id           -> UID, GID and Groups
+uname -r     -> Kernel release
+uname -m     -> CPU architecture
+free -h      -> RAM and Swap information
+uptime       -> Uptime and Load Average
+
+Key Lessons:
+- Available memory is often more useful than Free memory.
+- Low Free RAM does not automatically mean memory pressure.
+- Load Average is not CPU utilization percentage.
+- Load Average represents 1, 5 and 15 minute averages.
+- Inspect first, diagnose second, modify only when needed.

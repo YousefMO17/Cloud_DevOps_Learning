@@ -1,0 +1,247 @@
+# Linux Lab 003 — Managing Files & Directories
+
+**Phase:** 1 — Linux Foundations
+**Lab:** 003 / 300
+**Environment:** Ubuntu Server 26.10 (ARM64)
+**Topic:** File & Directory Management
+**Status:** Hands-On Completed — Safety Check Pending
+
+---
+
+## 1. Lab Objective
+
+Learn how to create, copy, move, rename, and safely delete files and directories using the Linux Command Line.
+
+**Real-World Scenario:** Prepare a directory structure for a `payment-service` application, including configuration files, backups, and release files.
+
+## 2. Essential Commands
+
+| Command                     | Description                                       |
+| --------------------------- | ------------------------------------------------- |
+| `pwd`                       | Print the current working directory               |
+| `ls -la`                    | List files, including hidden files, with details  |
+| `mkdir directory`           | Create a directory                                |
+| `mkdir -p parent/child`     | Create directories and missing parent directories |
+| `touch file.txt`            | Create an empty file or update timestamps         |
+| `cp source destination`     | Copy a file                                       |
+| `cp -i source destination`  | Ask before overwriting an existing file           |
+| `cp -r source_dir dest_dir` | Recursively copy a directory                      |
+| `mv source destination`     | Move or rename a file or directory                |
+| `mv -i source destination`  | Ask before overwriting an existing file           |
+| `rm file.txt`               | Remove a file                                     |
+| `rmdir directory`           | Remove an empty directory                         |
+| `ls -laR directory`         | Recursively inspect directory contents            |
+
+## 3. Directory Creation
+
+Create a project directory:
+
+```bash
+mkdir -p Linux-lab003/payment-service
+```
+
+Create multiple subdirectories with Bash Brace Expansion:
+
+```bash
+mkdir {config,backups,releases}
+```
+
+**Important:** Brace Expansion makes Bash generate multiple arguments, allowing us to create several directories using one command.
+
+## 4. File Creation
+
+Create a configuration file:
+
+```bash
+touch config/app.conf
+```
+
+`touch` creates the file if it doesn't exist. If it exists, it updates its timestamps without deleting its contents.
+
+**Important:** `touch config/app.conf` is different from `touch app.conf config`.
+
+The first creates or updates a file inside `config/`. The second specifies two separate paths.
+
+## 5. Copying Files — `cp`
+
+Create a backup while retaining the original:
+
+```bash
+cp config/app.conf backups/app.conf.bak
+```
+
+**Result:**
+
+- Original: `config/app.conf`
+- Backup: `backups/app.conf.bak`
+
+`cp` preserves the source file and creates a separate destination copy.
+
+**Production Note:** A valid backup should contain the intended data and should be verified through inspection or a restore test. Two empty files are sufficient for this exercise but are not a meaningful production backup.
+
+## 6. Renaming & Moving — `mv`
+
+Create a draft:
+
+```bash
+touch draft.txt
+```
+
+Rename:
+
+```bash
+mv draft.txt release-v1.txt
+```
+
+Move to the releases directory:
+
+```bash
+mv release-v1.txt releases/
+```
+
+`mv` is used for both renaming and moving.
+
+**Important:** Use `mv -i` when you want confirmation before overwriting an existing destination.
+
+## 7. Deleting Files Safely
+
+Delete a file:
+
+```bash
+rm temporary.txt
+```
+
+Remove an empty directory:
+
+```bash
+rmdir empty-directory
+```
+
+**Safety Rules:**
+
+- Inspect paths before deleting anything.
+- Avoid using `sudo` when normal user permissions are enough.
+- Avoid recursive deletion until you understand exactly what will be removed.
+- `rm` does not normally move files to the Trash.
+
+## 8. Final Lab Structure
+
+```text
+/home/devops/Linux-lab003/
+└── payment-service/
+    ├── config/
+    │   └── app.conf
+    ├── backups/
+    │   └── app.conf.bak
+    └── releases/
+        └── release-v1.txt
+```
+
+**Verification:** The final directory structure was confirmed using `ls -laR`.
+
+All three files were empty (0 bytes), as expected for this exercise.
+
+## 9. Mistakes & Troubleshooting
+
+### Mistake 1 — Missing Space
+
+Incorrect:
+
+```bash
+cd..
+```
+
+Correct:
+
+```bash
+cd ..
+```
+
+### Mistake 2 — Wrong Directory Name
+
+Incorrect:
+
+```bash
+cp confing/app.config backups/app.conf.bak
+```
+
+Correct:
+
+```bash
+cp config/app.conf backups/app.conf.bak
+```
+
+Linux requires accurate file names and paths.
+
+### Mistake 3 — Incorrect Absolute Path
+
+Incorrect for this scenario:
+
+```bash
+mv release-v1.txt /releases
+```
+
+Correct from `payment-service/`:
+
+```bash
+mv release-v1.txt releases/
+```
+
+The leading `/` points to the filesystem root rather than the current working directory.
+
+### Mistake 4 — Incorrect Use of sudo
+
+Executed during the Lab:
+
+```bash
+sudo touch app.conf /config
+```
+
+This specifies two paths and may have created or changed `/config` at the filesystem root.
+
+**Pending Safety Check:**
+
+```bash
+ls -ld /config
+```
+
+Do not delete or modify `/config` before verifying its existence and ownership.
+
+### Mistake 5 — Case Sensitivity
+
+`Linux-lab003` and `linux-lab003` are different names on a typical Linux filesystem.
+
+Always check capitalization when typing paths.
+
+## 10. Key Engineering Lessons
+
+1. `mkdir` creates directories, while `touch` creates empty files or updates timestamps.
+2. `cp` copies files and keeps the original.
+3. `mv` moves or renames files.
+4. Absolute paths begin with `/`; relative paths are interpreted from the current working directory.
+5. An incorrect `/` can point a command to a completely different location.
+6. Linux filenames are usually case-sensitive.
+7. Check existing files before overwriting or deleting.
+8. Avoid unnecessary elevated privileges.
+9. Verify the final state instead of assuming a command succeeded.
+
+## 11. Interview Question
+
+**Q: What is the difference between `cp` and `mv` in Linux?**
+
+**Answer:**
+
+`cp` creates a copy of a file or directory while keeping the original source. `mv` moves or renames the source, removing it from its original path.
+
+## 12. Lab Completion Status
+
+- [x] Created the application directory structure
+- [x] Created configuration file
+- [x] Created backup copy
+- [x] Practiced renaming and moving files
+- [x] Verified final structure
+- [x] Reviewed common command mistakes
+- [x] Check `/config` for unintended changes
+- [x] Confirm GitHub push
+
+**Next Lab:** Lab 004 — File Inspection & Metadata

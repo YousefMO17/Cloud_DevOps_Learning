@@ -1,0 +1,209 @@
+# Linux Lab 004 — File Investigation & Metadata
+
+**Phase:** 01 — Linux Foundations  
+**Lab:** 004 / 300  
+**Environment:** Ubuntu Server 26.10 ARM64  
+**Status:** Hands-On Completed & Reviewed
+
+## 1. Objective
+
+Learn how to inspect Linux files, identify their actual types, understand filesystem metadata, and distinguish logical file size from disk space usage.
+
+**Scenario:** Investigate an unknown file on a Linux server without modifying the original.
+
+## 2. Essential Commands
+
+| Command | Description |
+|---|---|
+| `ls -l` | Display file permissions, owner, size and modification time |
+| `ls -lh` | Display detailed information with human-readable sizes |
+| `file filename` | Identify the file type |
+| `stat filename` | Display detailed file metadata |
+| `du -h filename` | Show allocated disk space used |
+| `cp source destination` | Create an independent copy |
+| `ls -i filename` | Display the file's inode number |
+
+## 3. Lab Execution
+
+Copy the system hostname file into the lab directory:
+
+```bash
+cp /etc/hostname Linux-lab004/server-hostname.txt
+```
+
+Navigate into the directory:
+
+```bash
+cd Linux-lab004
+```
+
+Investigate the file:
+
+```bash
+ls -lh server-hostname.txt
+file server-hostname.txt
+stat server-hostname.txt
+du -h server-hostname.txt
+```
+
+Create a fake image:
+
+```bash
+cp server-hostname.txt fake-image.jpg
+file fake-image.jpg
+```
+
+**Result:**
+
+```text
+fake-image.jpg: ASCII text
+```
+
+**Lesson:** Changing a file extension does not change the file's actual content or format.
+
+## 4. Actual File Metadata
+
+| Property | Value |
+|---|---|
+| File | `server-hostname.txt` |
+| Type | ASCII text / Regular File |
+| Logical Size | 11 Bytes |
+| Disk Usage | 4 KiB |
+| Inode | 1048596 |
+| Hard Link Count | 1 |
+| Owner | devops |
+| Group | devops |
+| Permissions | 0644 (`-rw-r--r--`) |
+| I/O Block | 4096 Bytes |
+
+### Understanding Permissions
+
+`0644` means:
+
+- Owner: Read + Write
+- Group: Read only
+- Others: Read only
+
+## 5. Logical Size vs Disk Usage
+
+The file contains 11 Bytes, but `du -h` reports 4 KiB.
+
+From `stat`:
+
+```text
+Size: 11
+Blocks: 8
+```
+
+Linux reports the allocated block count in 512-byte units for this output.
+
+```text
+8 × 512 = 4096 Bytes = 4 KiB
+```
+
+**Key Lesson:** Logical Size and Allocated Disk Space are different measurements. Neither command is wrong.
+
+## 6. Linux File Timestamps
+
+| Timestamp | Meaning |
+|---|---|
+| atime | Last recorded data access |
+| mtime | Last content modification |
+| ctime | Last inode status change |
+| Birth | File creation time, when supported |
+
+**Important:**
+
+- `ctime` means Change Time, not Creation Time.
+- Changing permissions can update `ctime` without changing `mtime`.
+- Access Time behavior depends on filesystem mount settings.
+
+## 7. Understanding Inodes
+
+An inode stores metadata about a filesystem object and information used to locate its data.
+
+The filename is associated with the inode through a directory entry.
+
+### Copy vs Move vs Hard Link
+
+| Operation | Inode Behavior |
+|---|---|
+| `cp` | New inode for the copied file on the same filesystem |
+| `mv` within one filesystem | Keeps the original inode |
+| Hard Link | Another filename referencing the same inode |
+
+**Example:**
+
+```bash
+cp report.txt report.jpg
+```
+
+The files are independent. Modifying the copy does not modify the original.
+
+Hard Links are different because multiple filenames can reference the same inode.
+
+## 8. Mistakes & Troubleshooting
+
+### Incorrect Relative Path
+
+Incorrect from the Home Directory:
+
+```bash
+cp etc/hostname Linux-lab004/server-hostname.txt
+```
+
+Correct:
+
+```bash
+cp /etc/hostname Linux-lab004/server-hostname.txt
+```
+
+**Reason:** `/etc/hostname` is an absolute path. Without the leading `/`, Linux searches relative to the current directory.
+
+### Misleading File Extension
+
+A file named `fake-image.jpg` is not necessarily an image.
+
+Use:
+
+```bash
+file fake-image.jpg
+```
+
+The `file` command identifies likely file types from their characteristics and content. It is not a security scanner.
+
+## 9. Production Notes
+
+- Inspect unknown files before modifying them.
+- Do not trust extensions as proof of file type.
+- Use `stat` when investigating ownership, permissions, timestamps or inode metadata.
+- Use `du` when investigating disk space consumption.
+- Understand the difference between logical file size and allocated disk usage.
+- Avoid unnecessary `sudo` when inspecting readable files.
+- Verify your results instead of assuming a command succeeded.
+
+## 10. Interview Questions
+
+**Q1: What is the difference between `stat`, `file`, and `du`?**
+
+`stat` displays metadata, `file` identifies file type, and `du` reports disk space usage.
+
+**Q2: Why can an 11-byte file occupy 4 KiB?**
+
+Because the filesystem can allocate storage in larger blocks than the file's actual content.
+
+**Q3: Does copying a file create a new inode?**
+
+Normally, yes. A regular copy creates a separate file with its own inode. The two files can be modified independently.
+
+## 11. Lab Completion
+
+- [x] Copied a system file safely
+- [x] Inspected ownership and permissions
+- [x] Identified the actual file type
+- [x] Inspected inode and timestamps
+- [x] Compared logical size with disk usage
+- [x] Tested a misleading file extension
+- [x] Answered the inode concept question
+
+**Next Lab:** Lab 005 — Hard Links vs Symbolic Links

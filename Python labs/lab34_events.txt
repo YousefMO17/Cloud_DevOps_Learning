@@ -1,0 +1,4 @@
+10:00 | web-01 | SERVER STARTED
+10:15 | db-01 | HIGH CPU
+
+10:30 | cache-01 | SERVER STOPPED

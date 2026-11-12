@@ -1,0 +1,9 @@
+=== Server Status Report ===
+
+web-01 : RUNNING
+db-01 : RUNNING
+cache-01 : STOPPED
+worker-01 : RUNNING
+
+
+Total Servers4
